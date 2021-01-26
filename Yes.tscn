@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Area.gd" type="Script" id=1]
+[ext_resource path="res://untitled.tscn" type="PackedScene" id=2]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="SphereMesh" id=5]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_no_depth_test = true
+params_diffuse_mode = 4
+params_specular_mode = 3
+albedo_color = Color( 1, 0, 0.470588, 1 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.68215, 2.38918, 1.9353 )
+
+[sub_resource type="CapsuleShape" id=7]
+height = 2.0
+
+[sub_resource type="SphereShape" id=8]
+
+[sub_resource type="CylinderShape" id=9]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Area" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 1 )
+
+[node name="Pointer" type="MeshInstance" parent="Area"]
+visible = false
+layers = 2147483649
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="untitled" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90646, 0, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.789962, 0.613155, 0, -0.613155, 0.789962, 0, 2.43036, 3.78443 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 0.678761, -0.432402, 0.593559, 0.537285, 0.843401, 1.60123e-08, -0.500609, 0.31891, 0.80479, 3.59057, -0.860432, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 2 )
+
+[node name="StaticBody2" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0799, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 7 )
+
+[node name="StaticBody3" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2413, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 8 )
+
+[node name="StaticBody4" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4381, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody4"]
+shape = SubResource( 9 )
+
+[editable path="untitled"]
