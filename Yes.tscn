@@ -48,10 +48,10 @@ material/0 = SubResource( 6 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90646, 0, 0 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.789962, 0.613155, 0, -0.613155, 0.789962, 0, 2.43036, 3.78443 )
+transform = Transform( 1, 0, 0, 0, 0.789962, 0.613155, 0, -0.613155, 0.789962, 0, 3.48244, 6.95015 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 0.678761, -0.432402, 0.593559, 0.537285, 0.843401, 1.60123e-08, -0.500609, 0.31891, 0.80479, 3.59057, -0.860432, 0 )
+transform = Transform( 0.91756, -0.397596, 0, 0.397596, 0.91756, 0, 0, 0, 1, 7.86168, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 2 )
@@ -64,14 +64,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 7 )
 
 [node name="StaticBody3" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2413, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32809, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 8 )
 
 [node name="StaticBody4" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4381, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7446, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody4"]
 shape = SubResource( 9 )
