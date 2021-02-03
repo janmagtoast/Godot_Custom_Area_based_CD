@@ -1,7 +1,7 @@
 extends Area
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		_make_readable()
 
@@ -15,9 +15,10 @@ func _make_readable():
 		var shape = colShape.get_shape()
 		var pos = colShape.global_transform.origin
 		var rot = colShape.global_transform.basis
-		var colScale = colShape.get_scale()
+		var colScale = colShape.global_transform.basis.get_scale()
 		
 		var moveDir = Vector3(1,0,0).normalized() #placeholder
+		var lastPos = Vector3(-2,0,0) #placeholder
 		
 		var contactPoint = Vector3()
 	
@@ -29,30 +30,33 @@ func _make_readable():
 		elif shape is CapsuleShape:
 			rot = rot.z
 			rot = _rot_correcter(rot,moveDir)
-			contactPoint = (rot * shape.get_height()*0.5) + (-moveDir * shape.get_radius()) + pos
+			contactPoint = colScale.x * (rot.normalized()*shape.get_height()*0.5 - moveDir*shape.get_radius()) + pos
 		
 		
 		elif shape is BoxShape:
-			var offset = Vector3(1,1,1).length() * rot.x
+			rot = rot.x
 			var ext = shape.get_extents() * colScale
-			print(offset*ext)
+			var compare := Vector3(1,0,0)
+			var boxAngle = compare.angle_to(rot)
+			var boxDir = compare.cross(rot).normalized()
 			
 			var corners := [Vector3(1,1,1),Vector3(1,1,-1),Vector3(1,-1,1),Vector3(1,-1,-1),Vector3(-1,1,1),Vector3(-1,1,-1),Vector3(-1,-1,1),Vector3(-1,-1,-1)]
+			var actualCorners :PoolVector3Array = []
 			for b in corners.size():
-				contactPoint = (corners[b]+ offset) * ext
+				contactPoint = (corners[b] * ext).rotated(boxDir,boxAngle) + pos
+				actualCorners.append(contactPoint)
 		
 		
 		elif shape is SphereShape:
-			print(shape.get_radius())
-			contactPoint = -moveDir * shape.get_radius() * colScale.x + pos
+			contactPoint = -moveDir*shape.get_radius()*colScale.x + pos
 			#fix stuff, check point position ...
 		
 		
 		elif shape is CylinderShape:
 			rot = rot.y
 			rot = _rot_correcter(rot,moveDir)
-			var cylinderPointFinder = -moveDir.rotated(moveDir.cross(rot).normalized(),cos(rot.dot(Vector3.UP)))
-			contactPoint = rot * shape.get_height()*0.5 + cylinderPointFinder * shape.get_radius() + pos
+			var cylinderLid = rot.rotated(moveDir.cross(rot).normalized(),PI/2)
+			contactPoint = rot.normalized()*shape.get_height()*0.5*colScale.y + cylinderLid.normalized()*shape.get_radius()*colScale.x + pos
 		
 		
 		elif shape is HeightMapShape:
