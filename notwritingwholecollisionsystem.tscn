@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://notwritingwholecd.gd" type="Script" id=1]
-[ext_resource path="res://Pointer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://untitled.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CylinderShape" id=1]
+height = 4.25637
 
 [sub_resource type="BoxShape" id=2]
 
@@ -16,13 +17,30 @@ inputVelocity = Vector3( 4, 0, 0 )
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 1 )
 
-[node name="Pointer" parent="Area" instance=ExtResource( 2 )]
+[node name="PointerStore" type="Spatial" parent="Area"]
+
+[node name="StaticBody2" type="StaticBody" parent="Area"]
+transform = Transform( 0.442304, 0, -0.896865, 0, 1, 0, 0.896865, 0, 0.442304, 1.73226, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area/StaticBody2"]
+shape = SubResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+transform = Transform( 0.987576, 0, -0.157141, 0, 1, 0, 0.157141, 0, 0.987576, 10.3035, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 2 )
 
+[node name="untitled" parent="." instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 15.9944, 4.44489, 0 )
+
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10.001, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.0105 )
+projection = 1
+size = 11.6637
+
+[node name="Camera2" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 13.9421, 0 )
+projection = 1
+current = true
+size = 11.6637
